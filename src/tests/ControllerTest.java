@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import main_components.Controller;
-import piece_properties.Color;
+import main_components.Color;
 import strategies.Difficulty;
 
 /**
@@ -19,7 +19,7 @@ public class ControllerTest {
 	@Test
 	public void testConstructor() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		assertNotNull(controller.view);
 		assertNotNull(controller.board);
 		assertNotNull(controller.commandManager);
@@ -35,7 +35,7 @@ public class ControllerTest {
 	@Test
 	public void testReset() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		controller.reset(Difficulty.EASY);
 		assertNotNull(controller.view);
 		assertNotNull(controller.board);
@@ -52,7 +52,7 @@ public class ControllerTest {
 	@Test
 	public void testInitializeVariables() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		assertNotNull(controller.view);
 		assertNotNull(controller.board);
 		assertNotNull(controller.commandManager);
@@ -67,7 +67,7 @@ public class ControllerTest {
 	 */
 	@Test
 	public void testComputerTurn(){
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		assertEquals(controller.difficulty, Difficulty.EASY);
 	}
 	
@@ -76,7 +76,7 @@ public class ControllerTest {
 	 */
 	@Test
 	public void testComputerEasy(){
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		controller.computerEasy();
 		assertEquals(controller.board.playerTurn, Color.BLACK);
 	}
@@ -86,7 +86,7 @@ public class ControllerTest {
 	 */
 	@Test
 	public void testComputerMedium(){
-		Controller controller = new Controller(8, 8, Difficulty.MEDIUM);
+		Controller controller = new Controller(Difficulty.MEDIUM);
 		controller.computerEasy();
 		assertEquals(controller.board.playerTurn, Color.BLACK);
 	}

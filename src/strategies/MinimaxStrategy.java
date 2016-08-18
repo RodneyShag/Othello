@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import main_components.Board;
 import main_components.Command;
 import main_components.Controller;
-import piece_properties.Color;
+import main_components.Color;
 
 /**
  * \brief
@@ -41,10 +41,10 @@ public class MinimaxStrategy extends Strategy{
 	}
 	
 	/**
-	 * Recursive function. Uses Minimax strategy to determine the next move
+	 * Recursive function. Uses Minimax strategy to determine the next move.
 	 * @param board			The Board to do a "move" on.
-	 * @param currLevel		The current depth we've searched to in game tree (where 0 corresponds to current state of Board)
-	 * @param maxDepth		The number of levels deep we should search the game tree
+	 * @param currLevel		The current depth we've searched to in game tree (where 0 corresponds to current state of Board).
+	 * @param maxDepth		The number of levels deep we should search the game tree.
 	 * @return				The Board after the "move" is performed.
 	 */
 	public Board minimax(Board board, int currLevel, int maxDepth){

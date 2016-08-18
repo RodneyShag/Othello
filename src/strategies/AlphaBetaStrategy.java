@@ -6,7 +6,7 @@ import java.util.Collections;
 import main_components.Board;
 import main_components.Command;
 import main_components.Controller;
-import piece_properties.Color;
+import main_components.Color;
 
 /**
  * \brief
@@ -53,7 +53,6 @@ public class AlphaBetaStrategy extends Strategy{
 		/* Execute the command */
 		Command command = getCommand(board, successorBoard);
 		commandManager.executeCommand(command);
-		
 		view.updateView();
 		
 		/* Display utility to console */

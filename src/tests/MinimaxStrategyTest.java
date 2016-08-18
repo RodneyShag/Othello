@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import main_components.Board;
 import main_components.Controller;
-import piece_properties.Color;
+import main_components.Color;
 import strategies.Difficulty;
 import strategies.MinimaxStrategy;
 
@@ -25,7 +25,7 @@ public class MinimaxStrategyTest {
 	@Test
 	public void testMinimaxStrategy() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		MinimaxStrategy minimaxStrategy = new MinimaxStrategy(controller);
 		
 		/* Test data */
@@ -40,7 +40,7 @@ public class MinimaxStrategyTest {
 	@Test
 	public void testMove() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		MinimaxStrategy minimaxStrategy = new MinimaxStrategy(controller);
 		
 		/* Test data */
@@ -54,14 +54,13 @@ public class MinimaxStrategyTest {
 	@Test
 	public void testMinimax() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		MinimaxStrategy minimaxStrategy = new MinimaxStrategy(controller);
 		
 		/* Test data */
 		Board board = minimaxStrategy.minimax(controller.board, 3, 3);
 		assertEquals(board.blackPlayer.score, 2);
 		assertEquals(board.whitePlayer.score, 2);
-		
 	}
 
 	/**
@@ -70,12 +69,11 @@ public class MinimaxStrategyTest {
 	@Test
 	public void testGetAdjacentBoards() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		MinimaxStrategy minimaxStrategy = new MinimaxStrategy(controller);
 		
 		/* Test data */
 		ArrayList<Board> adjacentBoards = minimaxStrategy.getAdjacentBoards(controller.board);
 		assertEquals(adjacentBoards.size(), 4);
 	}
-
 }

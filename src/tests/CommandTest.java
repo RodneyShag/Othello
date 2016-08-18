@@ -9,7 +9,7 @@ import org.junit.Test;
 import main_components.Board;
 import main_components.Command;
 import main_components.Controller;
-import piece_properties.Color;
+import main_components.Color;
 import strategies.Difficulty;
 
 /**
@@ -25,7 +25,7 @@ public class CommandTest {
 	@Test
 	public void testConstructor() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		Board board = controller.board;
 		Command command = new Command(board, Color.BLACK, new Point(2, 2));
 		
@@ -33,7 +33,7 @@ public class CommandTest {
 		assertNotNull(command.board);
 		assertNotNull(command.color);
 		assertEquals(command.destination, new Point(2, 2));
-		assertNotNull(command.capturedPoints);
+		assertNotNull(command.captures);
 	}
 	
 	/**
@@ -42,13 +42,13 @@ public class CommandTest {
 	@Test
 	public void testExecute() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		Board board = controller.board;
 		Command command = new Command(board, Color.BLACK, new Point(3, 5));
 		
 		/* Test execute */
 		command.execute();
-		assertEquals(board.tile[5][3].color, Color.BLACK);
+		assertEquals(board.getDiskColor(new Point(3, 5)), Color.BLACK);
 	}
 	
 	/**
@@ -57,13 +57,16 @@ public class CommandTest {
 	@Test
 	public void testUndo() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		Board board = controller.board;
 		Command command = new Command(board, Color.BLACK, new Point(3, 5));
 		
 		/* Test Undo */
 		command.execute();
+		assertEquals(board.getDiskColor(new Point(3, 5)), Color.BLACK);
+		assertEquals(board.getDiskColor(new Point(3, 4)), Color.BLACK);
 		command.undo();
-		assertEquals(board.tile[3][5].color, Color.NONE);
+		assertEquals(board.getDiskColor(new Point(3, 5)), Color.NONE);
+		assertEquals(board.getDiskColor(new Point(3, 4)), Color.WHITE);
 	}
 }

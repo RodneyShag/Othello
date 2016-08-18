@@ -5,7 +5,7 @@ import listeners.NewGameListener;
 import listeners.PlaceDiskListener;
 import listeners.RedoListener;
 import listeners.UndoListener;
-import piece_properties.Color;
+import main_components.Color;
 import strategies.MinimaxStrategy;
 import strategies.AlphaBetaStrategy;
 import strategies.Difficulty;
@@ -23,17 +23,17 @@ public class Controller {
 	public View view;						///< The "View" in MVC structure.
 	public int whiteGamesWon = 0;			///< Number of games WHITE has won
 	public int blackGamesWon = 0;			///< Number of games BLACK has won
-	public int rows;						///< Number of rows on Board
-	public int columns;						///< Number of columns on Board
+	public final byte rows;					///< Number of rows on Board
+	public final byte columns;				///< Number of columns on Board
 
 	public Difficulty difficulty;			///< The difficulty (intelligence) of the computer A.I.
 	
 	/**
 	 * Constructor: Initialize the Controller with a new Board and new View. Add mouseListeners to the View
 	 */
-	public Controller(int rows, int columns, Difficulty difficulty) {
-		this.rows = rows;
-		this.columns = columns;
+	public Controller(Difficulty difficulty) {
+		rows = 8;
+		columns = 8;
 		this.difficulty = difficulty;
 		initializeVariables();
 		view = new View(board, this); // purposely NOT put into intializeVariables() since that function is called often
@@ -60,7 +60,7 @@ public class Controller {
 	 * Create Board and CommandManager.
 	 */
 	public void initializeVariables(){
-		board = new Board(rows, columns);	
+		board = new Board();	
 		commandManager = new CommandManager();
 	}
 	

@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import main_components.Board;
 import main_components.Controller;
-import piece_properties.Color;
+import main_components.Color;
 import strategies.Difficulty;
 import strategies.RandomStrategy;
 
@@ -25,7 +25,7 @@ public class RandomStrategyTest {
 	@Test
 	public void testRandomStrategy() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		RandomStrategy randomStrategy = new RandomStrategy(controller);
 		
 		/* Test data */
@@ -40,7 +40,7 @@ public class RandomStrategyTest {
 	@Test
 	public void testMove() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		RandomStrategy randomStrategy = new RandomStrategy(controller);
 		
 		/* Test data */
@@ -54,7 +54,7 @@ public class RandomStrategyTest {
 	@Test
 	public void testChooseRandomMove() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		RandomStrategy randomStrategy = new RandomStrategy(controller);
 		
 		/* Test data */

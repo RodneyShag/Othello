@@ -1,12 +1,11 @@
 package strategies;
 
 import java.awt.Point;
-import java.util.ArrayList;
 
+import main_components.BitFunctions;
 import main_components.Board;
 import main_components.Command;
 import main_components.Controller;
-import piece_properties.Color;
 
 /**
  * \brief
@@ -29,12 +28,8 @@ public class RandomStrategy extends Strategy {
 	 * @return			The updated Board after the "move" is performed.
 	 */
 	public Board move(Board board){
-		ArrayList<Point> validMoves;
-		if (board.playerTurn == Color.BLACK)
-			validMoves = board.blackPlayer.validMoves;
-		else
-			validMoves = board.whitePlayer.validMoves;
-		if (validMoves.isEmpty())
+		long validMoves = board.getCurrentPlayer().validMoves;
+		if (validMoves == 0L)
 			return null;
 		Point move = chooseRandomMove(validMoves);
 		Command command = new Command(board, controller.board.playerTurn, move);
@@ -48,9 +43,13 @@ public class RandomStrategy extends Strategy {
 	 * @param validMoves	The list of valid moves
 	 * @return				One of the moves, chosen randomly.
 	 */
-	public Point chooseRandomMove(ArrayList<Point> validMoves){
-		int numMoves = validMoves.size();
-		int num = (int) (Math.random() * numMoves);
-		return validMoves.get(num);
+	public Point chooseRandomMove(long validMoves){
+		if (validMoves == 0L)
+			return null;
+		while(true){
+			Point pos = new Point((int) (Math.random() * 8), (int) (Math.random() * 8));
+			if (BitFunctions.getBit(validMoves, pos))
+				return pos;
+		}
 	}
 }

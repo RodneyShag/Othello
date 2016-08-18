@@ -10,7 +10,7 @@ import org.junit.Test;
 import main_components.Board;
 import main_components.Command;
 import main_components.Controller;
-import piece_properties.Color;
+import main_components.Color;
 import strategies.Difficulty;
 import strategies.AlphaBetaStrategy;
 
@@ -27,7 +27,7 @@ public class AlphaBetaStrategyTest {
 	@Test
 	public void testAlphaBetaStrategy() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		AlphaBetaStrategy alphaBetaStrategy = new AlphaBetaStrategy(controller);
 		
 		/* Test data */
@@ -42,7 +42,7 @@ public class AlphaBetaStrategyTest {
 	@Test
 	public void testMove() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		AlphaBetaStrategy alphaBetaStrategy = new AlphaBetaStrategy(controller);
 		
 		/* Test data */
@@ -56,7 +56,7 @@ public class AlphaBetaStrategyTest {
 	@Test
 	public void testAlphaBeta() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		AlphaBetaStrategy alphaBetaStrategy = new AlphaBetaStrategy(controller);
 		
 		/* Test data */
@@ -71,7 +71,7 @@ public class AlphaBetaStrategyTest {
 	@Test
 	public void testGetAdjacentBoards() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		AlphaBetaStrategy alphaBetaStrategy = new AlphaBetaStrategy(controller);
 		
 		/* Test data */
@@ -85,9 +85,9 @@ public class AlphaBetaStrategyTest {
 	@Test
 	public void testGetCommand(){
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		Board board1 = controller.board;
-		Board board2 = new Board(8, 8);
+		Board board2 = new Board();
 		board2.placeDisk(new Point(0,0), Color.WHITE);
 		AlphaBetaStrategy alphaBetaStrategy = new AlphaBetaStrategy(controller);
 		Command command = alphaBetaStrategy.getCommand(board1, board2);

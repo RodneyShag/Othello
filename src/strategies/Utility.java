@@ -1,7 +1,8 @@
 package strategies;
 
+import main_components.BitFunctions;
 import main_components.Board;
-import piece_properties.Color;
+import main_components.Color;
 
 /**
  * \brief
@@ -49,7 +50,7 @@ public class Utility {
 		if (board.gameEnded)
 			gameEndedUtility();
 		else
-			value = board.blackPlayer.validMoves.size() - board.whitePlayer.validMoves.size();
+			value = BitFunctions.cardinality(board.blackPlayer.validMoves) - BitFunctions.cardinality(board.whitePlayer.validMoves);
 	}
 	
 	/**
@@ -60,8 +61,8 @@ public class Utility {
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() + 50 * board.cornersOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() + 50 * board.cornersOwned(Color.WHITE);
+			int utilityBlack = BitFunctions.cardinality(board.blackPlayer.validMoves) + 50 * board.cornersOwned(Color.BLACK);
+			int utilityWhite = BitFunctions.cardinality(board.whitePlayer.validMoves) + 50 * board.cornersOwned(Color.WHITE);
 			value = utilityBlack - utilityWhite;
 		}
 	}
@@ -74,8 +75,8 @@ public class Utility {
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() - 5 * board.cSquaresOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() - 5 * board.cSquaresOwned(Color.WHITE);
+			int utilityBlack = BitFunctions.cardinality(board.blackPlayer.validMoves) - 5 * board.cSquaresOwned(Color.BLACK);
+			int utilityWhite = BitFunctions.cardinality(board.whitePlayer.validMoves) - 5 * board.cSquaresOwned(Color.WHITE);
 			value = utilityBlack - utilityWhite;
 		}
 	}
@@ -88,8 +89,8 @@ public class Utility {
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() - 20 * board.xSquaresOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() - 20 * board.xSquaresOwned(Color.WHITE);
+			int utilityBlack = BitFunctions.cardinality(board.blackPlayer.validMoves) - 20 * board.xSquaresOwned(Color.BLACK);
+			int utilityWhite = BitFunctions.cardinality(board.whitePlayer.validMoves) - 20 * board.xSquaresOwned(Color.WHITE);
 			value = utilityBlack - utilityWhite;
 		}
 	}
@@ -102,9 +103,9 @@ public class Utility {
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() - 5 * board.cSquaresOwned(Color.BLACK) 
+			int utilityBlack = BitFunctions.cardinality(board.blackPlayer.validMoves) - 5 * board.cSquaresOwned(Color.BLACK) 
 				             - 20 * board.xSquaresOwned(Color.BLACK) + 50 * board.cornersOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() - 5 * board.cSquaresOwned(Color.WHITE) 
+			int utilityWhite = BitFunctions.cardinality(board.whitePlayer.validMoves) - 5 * board.cSquaresOwned(Color.WHITE) 
 					         - 20 * board.xSquaresOwned(Color.WHITE) + 50 * board.cornersOwned(Color.WHITE);
 			value = utilityBlack - utilityWhite;
 		}

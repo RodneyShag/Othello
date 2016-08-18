@@ -7,12 +7,13 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;
 
 import main_components.Button;
+import main_components.BitFunctions;
 import main_components.Board;
 import main_components.Command;
 import main_components.CommandManager;
 import main_components.Controller;
 import main_components.View;
-import piece_properties.Color;
+import main_components.Color;
 
 /**
  * \brief
@@ -43,7 +44,8 @@ public class PlaceDiskListener extends MouseAdapter {
 		if (board.playerTurn != Color.BLACK)
 			return;
 		Button currentButton = (Button) event.getSource();
-		if (board.getCurrentPlayer().validMoves.contains(currentButton.createPoint())){
+		long validMoves = board.getCurrentPlayer().validMoves;
+		if (BitFunctions.getBit(validMoves, currentButton.createPoint())){
 			Point destinationPoint = currentButton.createPoint();
 			Command command = new Command(board, controller.board.playerTurn, destinationPoint);
 			commandManager.executeCommand(command);
@@ -53,7 +55,7 @@ public class PlaceDiskListener extends MouseAdapter {
 		    try{
 		        SwingUtilities.invokeLater(new Runnable(){
 		            public void run(){
-		            	if (board.whitePlayer.validMoves.size() > 0)
+		            	if (board.whitePlayer.validMoves != 0L)
 		    				controller.computerTurn();
 		            	view.enableButtons(true);
 		            }

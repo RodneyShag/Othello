@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.Point;
 import java.awt.event.MouseListener;
 
-import piece_properties.Color;
+import main_components.Color;
 
 /**
  * \brief
@@ -64,7 +64,7 @@ public class View {
 
 		green = new java.awt.Color(0, 100, 0);
 		lightGreen = new java.awt.Color(0, 200, 0);
-
+		
 		frame = new JFrame("Othello");
 		blackIcon = new ImageIcon("images/black_disk.png");
 		whiteIcon = new ImageIcon("images/white_disk.png");
@@ -98,13 +98,7 @@ public class View {
 			for (int column = 0; column < board.columns; column++){
 				
 				/* Create Buttons */
-				Disk currentDisk = board.tile[row][column];
 				Button currentButton = button[row][column];
-				if (currentDisk.color == Color.BLACK)
-					currentButton.setIcon(blackIcon);
-				else if (currentDisk.color == Color.WHITE)
-					currentButton.setIcon(whiteIcon);
-				//currentButton.setIcon(currentDisk.image);
 				
 				/* Set bounds for the Button */
 				int xPositionGUI = getXPositionGUI(column);
@@ -115,6 +109,15 @@ public class View {
 				panel.add(currentButton);
 			}
 		}
+		
+		/* Put Black Disks on Board */
+		button[3][3].setIcon(blackIcon);
+		button[4][4].setIcon(blackIcon);
+		
+		/* Put White Disks on Board */
+		button[3][4].setIcon(whiteIcon);
+		button[4][3].setIcon(whiteIcon);
+		
 		createInterfaceButtons(panel);
 		updateView();
 		
@@ -126,17 +129,15 @@ public class View {
 	 * Colors the backgrounds of valid moves for a player
 	 */
 	public void highlightMoves(){
-		Player currentPlayer = board.getCurrentPlayer();
-		for (int row = 0; row < board.rows; row++){
-			for (int col = 0; col < board.columns; col++){
-				Point currentPoint = new Point(col, row);
-				Button currentButton = button[row][col];
-				if (currentPlayer.validMoves.contains(currentPoint))
-					currentButton.setBackground(lightGreen);
-				else
-					currentButton.setBackground(green);
-			}
-		}
+		long validMoves = board.getCurrentPlayer().validMoves;
+		for (byte tileNum = 0; tileNum < 64; tileNum++, validMoves >>= 1){ //assumes 64-bit long
+			Point currentPoint = BitFunctions.getPoint(tileNum);
+			Button currentButton = button[currentPoint.y][currentPoint.x];
+			if ((validMoves & 1) == 1)
+				currentButton.setBackground(lightGreen);
+			else
+				currentButton.setBackground(green);
+		}		
 	}
 	
 	/**
@@ -321,18 +322,19 @@ public class View {
 	 */
 	public void updateIcons(){
 		for (int row = 0; row < board.rows; row++){
-			for (int column = 0; column < board.columns; column++){
-				Disk currentDisk = board.tile[row][column];
-				Button currentButton = button[row][column];
-				if (currentDisk.color == Color.BLACK)
+			for (int col = 0; col < board.columns; col++){
+				Point currentPoint = new Point(col, row);
+				Button currentButton = button[row][col];
+				if (BitFunctions.getBit(board.blackPlayer.diskPositions, currentPoint))
 					currentButton.setIcon(blackIcon);
-				else if (currentDisk.color == Color.WHITE)
+				else if (BitFunctions.getBit(board.whitePlayer.diskPositions, currentPoint))
 					currentButton.setIcon(whiteIcon);
 				else
 					currentButton.setIcon(null);
 			}
 		}
 	}
+	
 	
 	/**
 	 * Updates the JButtons for number of disks for each player

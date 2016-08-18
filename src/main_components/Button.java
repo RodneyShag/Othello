@@ -1,5 +1,4 @@
 package main_components;
-/** \brief The main classes for our Othello Program */
 
 import javax.swing.JButton;
 import java.awt.Point;

@@ -12,6 +12,6 @@ public class GameLoop {
 	 * @param args	Command Line arguments (which we won't use)
 	 */
 	public static void main(String[] args) {
-		new Controller(8, 8, Difficulty.HARD);
+		new Controller(Difficulty.HARD);
 	}
 }

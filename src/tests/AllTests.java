@@ -12,7 +12,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * @author Rodney Shaghoulian
  */
 @RunWith(Suite.class)
-@SuiteClasses({ DiskTest.class, PlayerTest.class, BoardTest.class, ButtonTest.class,
+@SuiteClasses({ PlayerTest.class, BitFunctionsTest.class, BoardTest.class, ButtonTest.class, FunctionsTest.class,
 	CommandManagerTest.class, CommandTest.class, ControllerTest.class, UtilityTest.class,
 	RandomStrategyTest.class, MinimaxStrategyTest.class, AlphaBetaStrategyTest.class})
 public class AllTests {

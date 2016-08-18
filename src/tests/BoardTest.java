@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import main_components.Board;
 import main_components.Player;
-import piece_properties.Color;
+import main_components.Color;
 
 /**
  * \brief
@@ -23,17 +23,22 @@ public class BoardTest {
 	@Test
 	public void testBoardConstructor() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test data */
 		assertEquals(board.rows, 8);
 		assertEquals(board.columns, 8);
-		assertNotNull(board.tile);
+		assertNotNull(board.blackPlayer);
+		assertNotNull(board.whitePlayer);
 		assertEquals(board.playerTurn, Color.BLACK);
 		assertFalse(board.gameEnded);
 		assertNull(board.winner);
-		assertNotNull(board.blackPlayer);
-		assertNotNull(board.whitePlayer);
+		assertEquals(board.turn, 1);
+		
+		assertEquals(board.getDiskColor(new Point(3, 3)), Color.BLACK);
+		assertEquals(board.getDiskColor(new Point(4, 4)), Color.BLACK);
+		assertEquals(board.getDiskColor(new Point(3, 4)), Color.WHITE);
+		assertEquals(board.getDiskColor(new Point(4, 3)), Color.WHITE);
 	}
 
 	/**
@@ -42,13 +47,12 @@ public class BoardTest {
 	@Test
 	public void testBoardCopyConstructor() {
 		/* Set up Boards */
-		Board board1 = new Board(8, 8);
+		Board board1 = new Board();
 		Board board2 = new Board(board1);
 		
 		/* Test data */
 		assertEquals(board2.rows, 8);
 		assertEquals(board2.columns, 8);
-		assertNotNull(board2.tile);
 		assertEquals(board2.playerTurn, Color.BLACK);
 		assertFalse(board2.gameEnded);
 		assertNull(board2.winner);
@@ -57,27 +61,12 @@ public class BoardTest {
 	}
 
 	/**
-	 * Tests Board initialization. Tests 2 BLACK and 2 WHITE Disks in center
-	 */
-	@Test
-	public void testInitializeBoard() {
-		/* Set up Board */
-		Board board = new Board(8, 8);
-		
-		/* Test data */
-		assertEquals(board.tile[3][3].color, Color.BLACK);
-		assertEquals(board.tile[4][4].color, Color.BLACK);
-		assertEquals(board.tile[3][4].color, Color.WHITE);
-		assertEquals(board.tile[4][3].color, Color.WHITE);
-	}
-
-	/**
 	 * Tests out of range positions on Board (should be false). Also tests true condition.
 	 */
 	@Test
 	public void testValidPosition() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test data */
 		assertFalse(board.validPosition(new Point(0, 8)));
@@ -85,38 +74,39 @@ public class BoardTest {
 		assertTrue(board.validPosition(new Point(0, 0)));
 		assertTrue(board.validPosition(new Point(7, 7)));
 	}
-
+	
 	/**
 	 * Tests Disk Color of 4 center Disks.
 	 */
 	@Test
-	public void testDiskColor() {
+	public void testGetDiskColor() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test data */
-		Color color = board.diskColor(new Point(3,3));
+		Color color = board.getDiskColor(new Point(3,3));
 		assertEquals(color, Color.BLACK);
-		color = board.diskColor(new Point(3,4));
+		color = board.getDiskColor(new Point(3,4));
 		assertEquals(color, Color.WHITE);
-		color = board.diskColor(new Point(4,3));
+		color = board.getDiskColor(new Point(4,3));
 		assertEquals(color, Color.WHITE);
-		color = board.diskColor(new Point(4,4));
+		color = board.getDiskColor(new Point(4,4));
 		assertEquals(color, Color.BLACK);
 		
 	}
 
 	/**
-	 * Tests that opponents color is opposite of our color.
+	 * Tests setting Disk Color on a Board
 	 */
 	@Test
-	public void testGetOpponentColor() {
+	public void testSetDiskColor() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test data */
-		assertEquals(board.getOppositeColor(Color.BLACK), Color.WHITE);
-		assertEquals(board.getOppositeColor(Color.WHITE), Color.BLACK);
+		board.setDiskColor(new Point(1, 1), Color.BLACK);
+		Color color = board.getDiskColor(new Point(1,1));
+		assertEquals(color, Color.BLACK);
 	}
 	
 	/**
@@ -125,7 +115,7 @@ public class BoardTest {
 	@Test
 	public void testUpdateTurn() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test data */
 		assertEquals(board.playerTurn, Color.BLACK);
@@ -139,14 +129,14 @@ public class BoardTest {
 	@Test
 	public void testUpdateGameStatus() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test gameEnded at beginning of game */
 		assertFalse(board.gameEnded);
 		
 		/* Simulate an ended game, and test gameEnded */
-		board.blackPlayer.validMoves.clear();
-		board.whitePlayer.validMoves.clear();
+		board.blackPlayer.validMoves = 0L;
+		board.whitePlayer.validMoves = 0L;
 		board.updateGameStatus();
 		assertTrue(board.gameEnded);
 	}
@@ -157,13 +147,13 @@ public class BoardTest {
 	@Test
 	public void testUpdateBoard() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test data */
 		board.placeDisk(new Point(5, 3), Color.BLACK);
 		board.placeDisk(new Point(3, 5), Color.BLACK); // placeDisk automatically calls updateBoard().
-		assertEquals(board.blackPlayer.validMoves.size(), 0);
-		assertEquals(board.whitePlayer.validMoves.size(), 0);
+		assertEquals(board.blackPlayer.validMoves, 0);
+		assertEquals(board.whitePlayer.validMoves, 0);
 		assertEquals(board.blackPlayer.score, 6);
 		assertEquals(board.whitePlayer.score, 0);
 		assertTrue(board.gameEnded);
@@ -176,7 +166,7 @@ public class BoardTest {
 	@Test
 	public void testValidMove() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test 4 valid moves for BLACK */
 		assertTrue(board.validMove(new Point(5, 3), Color.BLACK));
@@ -205,7 +195,7 @@ public class BoardTest {
 	@Test
 	public void testValidInDirection() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test Invalid in 7 directions for placing (2,3) WHITE Disk */
 		assertFalse(board.validInDirection(new Point(2,3), Color.WHITE, -1, -1));
@@ -218,7 +208,6 @@ public class BoardTest {
 		
 		/* Test Valid in the right (east) direction for placing (2,3) WHITE Disk */
 		assertTrue(board.validInDirection(new Point(2,3), Color.WHITE, 1, 0));
-		
 	}
 	
 	/** 
@@ -227,66 +216,43 @@ public class BoardTest {
 	@Test
 	public void testRemoveDisk() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Remove Disk. Check it's removed */
+		assertEquals(board.getDiskColor(new Point(3, 3)), Color.BLACK);
 		board.removeDisk(new Point(3, 3));
-		assertEquals(board.tile[3][3].color, Color.NONE);
-	}
-	
-	/**
-	 * 1) Flips a Black Disk. Makes sure color of Disk changes, and scores are correctly adjusted. \n
-	 * 2) Flips an "empty" Disk. Makes sure color of Disk changes, and scores are correctly adjusted.
-	 */
-	@Test
-	public void testFlipDisk() {
-		/* Set up Board */
-		Board board = new Board(8, 8);
-		
-		/* Flip Black Disk. Test Data */
-		board.flipDisk(new Point(3, 3), Color.WHITE);
-		assertEquals(board.tile[3][3].color, Color.WHITE);
-		assertEquals(board.whitePlayer.score, 3);
-		assertEquals(board.blackPlayer.score, 1);
-		
-		/* Flip "empty" Disk. Test Data */
-		board.flipDisk(new Point(2, 2), Color.WHITE);
-		assertEquals(board.tile[2][2].color, Color.WHITE);
-		assertEquals(board.whitePlayer.score, 4);
-		assertEquals(board.blackPlayer.score, 1);
+		assertEquals(board.getDiskColor(new Point(3, 3)), Color.NONE);
 	}
 
 	/**
 	 * Tests flipping the (4,3) tile to BLACK and then to WHITE, using valid moves
 	 */
 	@Test
-	public void testFlipTiles() {
+	public void testGetCaptures() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test Data */
-		board.flipDisk(new Point(5, 3), Color.BLACK);
-		board.flipCaptures(new Point(5, 3), Color.BLACK);
-		assertEquals(board.diskColor(new Point(4, 3)), Color.BLACK);
-		board.flipCaptures(new Point(5, 2), Color.WHITE);
-		assertEquals(board.diskColor(new Point(4, 3)), Color.WHITE);
+		board.setDiskColor(new Point(5, 3), Color.BLACK);
+		long disksToFlip = board.getCaptures(new Point(5, 3), Color.BLACK);
+		assertEquals(disksToFlip, 0x0000000800000000L);
 		
+//		board = new Board();
+//		board.placeDisk(new Point(5, 3), Color.BLACK);
+//		System.out.println(board);
 	}
 
 	/**
 	 * Tests flipping the (4,3) tile to BLACK and then to WHITE, by using left direction
 	 */
 	@Test
-	public void testFlipInDirection() {
+	public void testToFlipInDirection() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test Data */
-		board.flipDisk(new Point(5, 3), Color.BLACK);
-		board.flipInDirection(new Point(5, 3), Color.BLACK, -1, 0);
-		assertEquals(board.diskColor(new Point(4, 3)), Color.BLACK);
-		board.flipInDirection(new Point(5, 2), Color.WHITE, -1, 1);
-		assertEquals(board.diskColor(new Point(4, 3)), Color.WHITE);
+		long disksToFlip = board.toFlipInDirection(new Point(5, 3), Color.BLACK, -1, 0);
+		assertEquals(disksToFlip, 0x0000000800000000L);
 	}
 
 	/**
@@ -295,13 +261,11 @@ public class BoardTest {
 	@Test
 	public void testPlaceDisk() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test data */
 		board.placeDisk(new Point(5, 3), Color.BLACK);
-		assertEquals(board.tile[3][5].color, Color.BLACK);
-		assertEquals(board.blackPlayer.score, 4);
-		assertEquals(board.whitePlayer.score, 1);
+		assertEquals(board.getDiskColor(new Point(5, 3)), Color.BLACK);
 	}
 	
 	/** 
@@ -310,11 +274,44 @@ public class BoardTest {
 	@Test
 	public void testGetCurrentPlayer() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test number of X squares owned */
 		Player player = board.getCurrentPlayer();
 		assertEquals(player.color, Color.BLACK);
+	}
+	
+	/** 
+	 * Tests that getOpponent() returns the correct Player whose turn it is
+	 */
+	@Test
+	public void testGetOpponent() {
+		/* Set up Board */
+		Board board = new Board();
+		
+		/* Test number of X squares owned */
+		Player player = board.getOpponent();
+		assertEquals(player.color, Color.WHITE);
+	}
+	
+	/**
+	 * Tests that blackPlayer is properly returned for Color.BLACK
+	 */
+	@Test
+	public void testGetPlayerFromColor() {
+		Board board = new Board();
+		Player player = board.getPlayerFromColor(Color.BLACK);
+		assertEquals(player, board.blackPlayer);
+	}
+	
+	/**
+	 * Tests that whitePlayer is properly returned as an opponent for Color.BLACK
+	 */
+	@Test
+	public void testGetOpponentOfColor() {
+		Board board = new Board();
+		Player player = board.getOpponentOfColor(Color.BLACK);
+		assertEquals(player, board.whitePlayer);
 	}
 	
 	/**
@@ -323,7 +320,7 @@ public class BoardTest {
 	@Test
 	public void testXSquaresOwned() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test data at setup */
 		int xSquaresOwned = board.xSquaresOwned(Color.WHITE);
@@ -341,7 +338,7 @@ public class BoardTest {
 	@Test
 	public void testCSquaresOwned() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test data at setup */
 		int cSquaresOwned = board.cSquaresOwned(Color.WHITE);
@@ -359,7 +356,7 @@ public class BoardTest {
 	@Test
 	public void testCornersOwned() {
 		/* Set up Board */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		
 		/* Test data at setup */
 		int cornersOwned = board.cornersOwned(Color.WHITE);
@@ -376,10 +373,7 @@ public class BoardTest {
 	 */
 	@Test
 	public void testToString() {
-		/* Set up Board */
-		Board board = new Board(8, 8);
-		
-		/* Test data */
+		Board board = new Board();
 		assertNotNull(board.toString());
 	}
 }

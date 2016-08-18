@@ -3,12 +3,13 @@ package strategies;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import main_components.BitFunctions;
 import main_components.Board;
 import main_components.Command;
 import main_components.CommandManager;
 import main_components.Controller;
 import main_components.View;
-import piece_properties.Color;
+import main_components.Color;
 
 /**
  * \brief
@@ -44,16 +45,14 @@ public abstract class Strategy {
 	 */
 	public ArrayList<Board> getAdjacentBoards(Board board){
 		ArrayList<Board> boards = new ArrayList<>();
-		ArrayList<Point> validMoves;
-		if (board.playerTurn == Color.BLACK)
-			validMoves = board.blackPlayer.validMoves;
-		else
-			validMoves = board.whitePlayer.validMoves;
-		for (Point move : validMoves){
-			Board resultingBoard = new Board(board);
-			Command command = new Command(resultingBoard, resultingBoard.playerTurn, move);
-			command.execute();
-			boards.add(resultingBoard);
+		long validMoves = board.getCurrentPlayer().validMoves;
+		for (byte tileNum = 0; tileNum < 64; tileNum++, validMoves >>= 1){ //assumes 64-bit long
+			if ((validMoves & 1) == 1){
+				Board resultingBoard = new Board(board);
+				Command command = new Command(resultingBoard, resultingBoard.playerTurn, BitFunctions.getPoint(tileNum));
+				command.execute();
+				boards.add(resultingBoard);
+			}
 		}
 		return boards;
 	}
@@ -67,8 +66,10 @@ public abstract class Strategy {
 	public Command getCommand(Board board, Board successorBoard){
 		for (int row = 0; row < board.rows; row++){
 			for (int col = 0; col < board.columns; col++){
-				if (board.tile[row][col].color == Color.NONE && successorBoard.tile[row][col].color != Color.NONE)
-					return new Command(board, successorBoard.tile[row][col].color, new Point(col, row));
+				Color originalBoardColor  = board.getDiskColor(new Point(col, row));
+				Color successorBoardColor = successorBoard.getDiskColor(new Point(col, row));
+				if (originalBoardColor == Color.NONE && successorBoardColor != Color.NONE)
+					return new Command(board, successorBoardColor, new Point(col, row));
 			}
 		}
 		return null; // should never execute

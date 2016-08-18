@@ -10,7 +10,7 @@ import main_components.Board;
 import main_components.Command;
 import main_components.CommandManager;
 import main_components.Controller;
-import piece_properties.Color;
+import main_components.Color;
 import strategies.Difficulty;
 
 /**
@@ -27,7 +27,7 @@ public class CommandManagerTest {
 	@Test
 	public void testCommandManager() {
 		/* Set up data */
-		Controller controller = new Controller(8, 8, Difficulty.EASY);
+		Controller controller = new Controller(Difficulty.EASY);
 		Board board = controller.board;
 		CommandManager commandManager = controller.commandManager;
 		Command command = new Command(board, Color.BLACK, new Point(3, 5));
@@ -39,7 +39,7 @@ public class CommandManagerTest {
 		
 		/* Test executeCommand */
 		commandManager.executeCommand(command);
-		assertEquals(board.tile[5][3].color, Color.BLACK);
+		assertEquals(board.getDiskColor(new Point(3, 5)), Color.BLACK);
 		assertEquals(commandManager.undos.size(), 1);
 		assertEquals(commandManager.redos.size(), 0);
 		
@@ -47,14 +47,14 @@ public class CommandManagerTest {
 		commandManager.executeCommand(command2);
 		commandManager.undo();
 		commandManager.undo();
-		assertEquals(board.tile[5][3].color, Color.NONE);
+		assertEquals(board.getDiskColor(new Point(3, 5)), Color.NONE);
 		assertEquals(commandManager.undos.size(), 0);
 		assertEquals(commandManager.redos.size(), 2);
 		
 		/* Test Redo */
 		commandManager.redo();
 		commandManager.redo();
-		assertEquals(board.tile[5][3].color, Color.BLACK);
+		assertEquals(board.getDiskColor(new Point(3, 5)), Color.BLACK);
 		assertEquals(commandManager.undos.size(), 2);
 		assertEquals(commandManager.redos.size(), 0);
 	}

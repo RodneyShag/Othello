@@ -7,7 +7,7 @@ import java.awt.Point;
 import org.junit.Test;
 
 import main_components.Board;
-import piece_properties.Color;
+import main_components.Color;
 import strategies.Utility;
 
 /**
@@ -23,7 +23,7 @@ public class UtilityTest {
 	@Test
 	public void testUtility() {
 		/* Set up data */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		Utility utility = new Utility(board);
 		
 		/* Test data was set up correctly */
@@ -37,7 +37,7 @@ public class UtilityTest {
 	@Test
 	public void testUtilityScoreDiff() {
 		/* Set up data */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		Utility utility = new Utility(board);
 		
 		/* Test utility at beginning of game */
@@ -51,7 +51,7 @@ public class UtilityTest {
 	@Test
 	public void testUtilityCorners() {
 		/* Set up data */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		Utility utility = new Utility(board);
 		
 		/* Test utility at beginning of game */
@@ -70,7 +70,7 @@ public class UtilityTest {
 	@Test
 	public void testUtilityValidMoves() {
 		/* Set up data */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		Utility utility = new Utility(board);
 		
 		/* Test utility at beginning of game */
@@ -85,7 +85,7 @@ public class UtilityTest {
 	@Test
 	public void testUtilityValidMovesAndCorners() {
 		/* Set up data */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		Utility utility = new Utility(board);
 		
 		/* Test utility at beginning of game */
@@ -104,7 +104,7 @@ public class UtilityTest {
 	@Test
 	public void testUtilityValidMovesAndCSquares() {
 		/* Set up data */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		Utility utility = new Utility(board);
 		
 		/* Test utility at beginning of game */
@@ -123,7 +123,7 @@ public class UtilityTest {
 	@Test
 	public void testUtilityValidMovesAndXSquares() {
 		/* Set up data */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		Utility utility = new Utility(board);
 		
 		/* Test utility at beginning of game */
@@ -142,7 +142,7 @@ public class UtilityTest {
 	@Test
 	public void testUtilityComplex() {
 		/* Set up data */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		Utility utility = new Utility(board);
 		
 		/* Test utility at beginning of game */
@@ -163,7 +163,7 @@ public class UtilityTest {
 	@Test
 	public void testGameEndedUtility() {
 		/* Set up data */
-		Board board = new Board(8, 8);
+		Board board = new Board();
 		Utility utility = new Utility(board);
 		
 		/* Test utility at beginning of game */
