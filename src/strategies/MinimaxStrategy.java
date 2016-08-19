@@ -3,9 +3,8 @@ package strategies;
 import java.util.ArrayList;
 
 import main_components.Board;
+import main_components.Color;
 import main_components.Command;
-import main_components.Controller;
-import piece_properties.Color;
 
 /**
  * \brief
@@ -14,14 +13,15 @@ import piece_properties.Color;
  */
 public class MinimaxStrategy extends Strategy{
 
-	public int depth = 5;			///< The depth to search the game tree
+	public int depth;	///< The depth to search the game tree. Anything above 5 is too slow.
 	
 	/**
 	 * Constructor - Calls subclasses constructor
 	 * @param controller	The Othello simulation that we should run Minimax on.
 	 */
-	public MinimaxStrategy(Controller controller){
-		super(controller);
+	public MinimaxStrategy(int depth){
+		super();
+		this.depth = depth;
 	}
 
 	/**
@@ -34,9 +34,8 @@ public class MinimaxStrategy extends Strategy{
 		
 		/* Execute the command */
 		Command command = getCommand(board, successorBoard);
-		commandManager.executeCommand(command);
+		command.execute();
 		
-		view.updateView();
 		return board;
 	}
 	

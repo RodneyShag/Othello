@@ -4,11 +4,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import main_components.Board;
+import main_components.Color;
 import main_components.Command;
-import main_components.CommandManager;
-import main_components.Controller;
-import main_components.View;
-import piece_properties.Color;
 
 /**
  * \brief
@@ -16,18 +13,13 @@ import piece_properties.Color;
  * @author Rodney Shaghoulian
  */
 public abstract class Strategy {
-	public Controller controller;				///< The Controller in the MVC structure
-	public View view;							///< The View in the MVC structure
-	public CommandManager commandManager;		///< Keeps track of Commands for "undos" and "redos"
 	
 	/**
-	 * Constructor - Initializes Variables
+	 * Constructor
 	 * @param controller	Corresponds to the current Othello simulation
 	 */
-	public Strategy(Controller controller){
-		this.controller 	= controller;
-		this.view 			= controller.view;
-		this.commandManager = controller.commandManager;
+	public Strategy(){
+		; // Empty Constructor
 	}
 	
 	/**

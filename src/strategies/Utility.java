@@ -1,7 +1,7 @@
 package strategies;
 
 import main_components.Board;
-import piece_properties.Color;
+import main_components.Color;
 
 /**
  * \brief
@@ -74,8 +74,8 @@ public class Utility {
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() - 5 * board.cSquaresOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() - 5 * board.cSquaresOwned(Color.WHITE);
+			int utilityBlack = board.blackPlayer.validMoves.size() - 5 * board.badCSquaresOwned(Color.BLACK);
+			int utilityWhite = board.whitePlayer.validMoves.size() - 5 * board.badCSquaresOwned(Color.WHITE);
 			value = utilityBlack - utilityWhite;
 		}
 	}
@@ -88,8 +88,8 @@ public class Utility {
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() - 20 * board.xSquaresOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() - 20 * board.xSquaresOwned(Color.WHITE);
+			int utilityBlack = board.blackPlayer.validMoves.size() - 20 * board.badXSquaresOwned(Color.BLACK);
+			int utilityWhite = board.whitePlayer.validMoves.size() - 20 * board.badXSquaresOwned(Color.WHITE);
 			value = utilityBlack - utilityWhite;
 		}
 	}
@@ -102,10 +102,10 @@ public class Utility {
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() - 5 * board.cSquaresOwned(Color.BLACK) 
-				             - 20 * board.xSquaresOwned(Color.BLACK) + 50 * board.cornersOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() - 5 * board.cSquaresOwned(Color.WHITE) 
-					         - 20 * board.xSquaresOwned(Color.WHITE) + 50 * board.cornersOwned(Color.WHITE);
+			int utilityBlack = board.blackPlayer.validMoves.size() - 5 * board.badCSquaresOwned(Color.BLACK) 
+				             - 20 * board.badXSquaresOwned(Color.BLACK) + 50 * board.cornersOwned(Color.BLACK);
+			int utilityWhite = board.whitePlayer.validMoves.size() - 5 * board.badCSquaresOwned(Color.WHITE) 
+					         - 20 * board.badXSquaresOwned(Color.WHITE) + 50 * board.cornersOwned(Color.WHITE);
 			value = utilityBlack - utilityWhite;
 		}
 	}

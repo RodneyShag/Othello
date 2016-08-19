@@ -4,9 +4,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import main_components.Board;
+import main_components.Color;
 import main_components.Command;
-import main_components.Controller;
-import piece_properties.Color;
 
 /**
  * \brief
@@ -19,8 +18,8 @@ public class RandomStrategy extends Strategy {
 	 * Constructor - Calls subclasses constructor
 	 * @param controller	The Othello simulation that we should run Minimax on.
 	 */
-	public RandomStrategy(Controller controller){
-		super(controller);
+	public RandomStrategy(){
+		super();
 	}
 	
 	/**
@@ -37,9 +36,8 @@ public class RandomStrategy extends Strategy {
 		if (validMoves.isEmpty())
 			return null;
 		Point move = chooseRandomMove(validMoves);
-		Command command = new Command(board, controller.board.playerTurn, move);
-		commandManager.executeCommand(command);
-		view.updateView();
+		Command command = new Command(board, board.playerTurn, move);
+		command.execute();
 		return board;
 	}
 	
