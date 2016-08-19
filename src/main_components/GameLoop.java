@@ -37,10 +37,10 @@ public class GameLoop {
 		AlphaBetaStrategy blackStrategy = new AlphaBetaStrategy(6);
 		while(true){
 			if (!board.gameEnded){
-				blackStrategy.move(board);
-			}
-			if (!board.gameEnded){
-				whiteStrategy.move(board);
+				if (board.playerTurn == Color.BLACK)
+					blackStrategy.move(board);
+				else
+					whiteStrategy.move(board);
 			}
 			else
 				return board.winner;
