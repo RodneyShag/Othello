@@ -33,16 +33,6 @@ public class Utility {
 	}
 	
 	/**
-	 * Calculates utility based on the number of corners owned by each Player.
-	 */
-	public void utilityCorners(){
-		if (board.gameEnded)
-			gameEndedUtility();
-		else
-			value = board.cornersOwned(Color.BLACK) - board.cornersOwned(Color.WHITE);
-	}
-	
-	/**
 	 * Calculates utility based on valid moves remaining for each player. More moves equals greater utility
 	 */
 	public void utilityValidMoves(){
@@ -54,42 +44,20 @@ public class Utility {
 	
 	/**
 	 * Calculates utility based on valid moves remaining for each player. More moves equals greater utility \n
-	 * Also takes into account number of corners owned.
+	 * Also takes into account X squares, C squares, and corners.
 	 */
-	public void utilityValidMovesAndCorners(){
+	public void utilityStatic(){
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() + 50 * board.cornersOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() + 50 * board.cornersOwned(Color.WHITE);
-			value = utilityBlack - utilityWhite;
-		}
-	}
-	
-	/**
-	 * Calculates utility based on valid moves remaining for each player. More moves equals greater utility \n
-	 * Also takes into account number of 'C squares' owned.
-	 */
-	public void utilityValidMovesAndCSquares(){
-		if (board.gameEnded)
-			gameEndedUtility();
-		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() - 5 * board.badCSquaresOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() - 5 * board.badCSquaresOwned(Color.WHITE);
-			value = utilityBlack - utilityWhite;
-		}
-	}
-	
-	/**
-	 * Calculates utility based on valid moves remaining for each player. More moves equals greater utility \n
-	 * Also takes into account X squares.
-	 */
-	public void utilityValidMovesAndXSquares(){
-		if (board.gameEnded)
-			gameEndedUtility();
-		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() - 20 * board.badXSquaresOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() - 20 * board.badXSquaresOwned(Color.WHITE);
+			int utilityBlack = board.blackPlayer.validMoves.size()
+					           - 10 * board.badCSquaresOwned(Color.BLACK) 
+				               - 20 * board.badXSquaresOwned(Color.BLACK)
+				               + 50 * board.cornersOwned(Color.BLACK);
+			int utilityWhite = board.whitePlayer.validMoves.size()
+					           - 10 * board.badCSquaresOwned(Color.WHITE) 
+					           - 20 * board.badXSquaresOwned(Color.WHITE)
+					           + 50 * board.cornersOwned(Color.WHITE);
 			value = utilityBlack - utilityWhite;
 		}
 	}
@@ -98,14 +66,22 @@ public class Utility {
 	 * Calculates utility based on valid moves remaining for each player. More moves equals greater utility \n
 	 * Also takes into account X squares, C squares, and corners.
 	 */
-	public void utilityComplex(){
+	public void utilityDynamic(){
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
-			int utilityBlack = board.blackPlayer.validMoves.size() - 5 * board.badCSquaresOwned(Color.BLACK) 
-				             - 20 * board.badXSquaresOwned(Color.BLACK) + 50 * board.cornersOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size() - 5 * board.badCSquaresOwned(Color.WHITE) 
-					         - 20 * board.badXSquaresOwned(Color.WHITE) + 50 * board.cornersOwned(Color.WHITE);
+			int utilityBlack = board.blackPlayer.validMoves.size()
+					           + (-65 + board.turn) * board.badCSquaresOwned(Color.BLACK) 
+					           + (-60 + board.turn) * board.badXSquaresOwned(Color.BLACK)
+				               + ( 70 - board.turn) * board.cornersOwned(Color.BLACK);
+			int utilityWhite = board.whitePlayer.validMoves.size()
+			           			+ (-65 + board.turn) * board.badCSquaresOwned(Color.WHITE) 
+			           			+ (-60 + board.turn) * board.badXSquaresOwned(Color.WHITE)
+			           			+ ( 70 - board.turn) * board.cornersOwned(Color.WHITE);
+			if (board.turn >= 44){
+				utilityBlack += board.blackPlayer.score;
+				utilityWhite += board.whitePlayer.score;
+			}
 			value = utilityBlack - utilityWhite;
 		}
 	}

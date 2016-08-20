@@ -8,7 +8,7 @@ import main_components.Board;
  * Used in sorting an array of boards so that the moves that immediately give WHITE the largest utility advantage come first
  * @author Rodney Shaghoulian
  */
-public class BoardComparatorWhite implements Comparator<Board>{
+public class BoardComparatorWhiteDynamic implements Comparator<Board>{
 	/**
 	 * Compares 2 Boards to determine which one is better for whitePlayer.
 	 * @param board1	Board 1. Will compare to Board 2.
@@ -20,10 +20,10 @@ public class BoardComparatorWhite implements Comparator<Board>{
 	@Override
 	public int compare(Board board1, Board board2){
 		Utility utility1 = new Utility(board1);	// corresponds to BLACK's utility
-		utility1.utilityComplex();
+		utility1.utilityDynamic();
 		
 		Utility utility2 = new Utility(board2); // corresponds to BLACK's utility
-		utility2.utilityComplex();
+		utility2.utilityDynamic();
 		
 		return utility1.value - utility2.value; // Example: If utility1 > utility2, we want board1 to come after board2
 	}

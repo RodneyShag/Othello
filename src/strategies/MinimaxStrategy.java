@@ -60,7 +60,7 @@ public class MinimaxStrategy extends Strategy{
 				Board successor = successorBoards.get(i);
 				Board lookaheadBoard = minimax(successor, currLevel + 1, maxDepth);
 				utility = new Utility(lookaheadBoard);
-				utility.utilityCorners();
+				utility.utilityStatic();
 				if (utility.value > max){
 					max = utility.value;
 					bestBoard = successor;
@@ -73,7 +73,7 @@ public class MinimaxStrategy extends Strategy{
 				Board successor = successorBoards.get(i);
 				Board lookaheadBoard = minimax(successor, currLevel + 1, maxDepth);
 				utility = new Utility(lookaheadBoard);
-				utility.utilityCorners();
+				utility.utilityStatic();
 				if (utility.value < min){
 					min = utility.value;
 					bestBoard = successor;
