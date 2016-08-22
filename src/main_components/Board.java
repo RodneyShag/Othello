@@ -343,51 +343,101 @@ public class Board {
 	}
 	
 	/**
-	 * Calculates the number of bad spots are occupied by a Disk of a certain Color. \n
+	 * Calculates the number of 'X squares' that are occupied by a Disk of a certain Color. \n
 	 * which are not next to a corner owned by that color.
 	 * @param color		the Color of the Disks that we want to check the corners for.
-	 * @return			the number of lone bad spots that are occupied by a Disk of a certain Color.
+	 * @return			the number of 'X squares' that are occupied by a Disk of a certain Color.
 	 */
 	public int xSquaresOwned(Color color){
 		int badSpots = 0;
-		if ((diskColor(new Point(1, 1)) == color) && (diskColor(new Point(0, 0)) != color))
+		if (diskColor(new Point(1, 1)) == color)
 			badSpots++;
-		if ((diskColor(new Point(1, rows - 2)) == color) && (diskColor(new Point(0, rows - 1)) != color))
+		if (diskColor(new Point(1, rows - 2)) == color)
 			badSpots++;
-		if ((diskColor(new Point(columns - 2, 1)) == color) && (diskColor(new Point(columns - 1, 0)) != color))
+		if (diskColor(new Point(columns - 2, 1)) == color)
 			badSpots++;
-		if ((diskColor(new Point(columns - 2, rows - 2)) == color) && (diskColor(new Point(columns - 1, rows - 1)) != color))
+		if (diskColor(new Point(columns - 2, rows - 2)) == color)
 			badSpots++;
 		return badSpots;
 	}
 	
 	/**
-	 * Calculates the number of 'C squares' are occupied by a Disk of a certain Color, \n
-	 * which are not next to a corner owned by that color.
+	 * Calculates the number of bad 'X squares' that are occupied by a Disk of a certain Color. \n
+	 * which are not next to an occupied corner
+	 * @param color		the Color of the Disks that we want to check the corners for.
+	 * @return			the number of lone 'X squares' that are occupied by a Disk of a certain Color.
+	 */
+	public int badXSquaresOwned(Color color){
+		int badSpots = 0;
+		if ((diskColor(new Point(1, 1)) == color) && (diskColor(new Point(0, 0)) == Color.NONE))
+			badSpots++;
+		if ((diskColor(new Point(1, rows - 2)) == color) && (diskColor(new Point(0, rows - 1)) == Color.NONE))
+			badSpots++;
+		if ((diskColor(new Point(columns - 2, 1)) == color) && (diskColor(new Point(columns - 1, 0)) == Color.NONE))
+			badSpots++;
+		if ((diskColor(new Point(columns - 2, rows - 2)) == color) && (diskColor(new Point(columns - 1, rows - 1)) == Color.NONE))
+			badSpots++;
+		return badSpots;
+	}
+	
+	/**
+	 * Calculates the number of 'C squares' are occupied by a Disk of a certain Color,
 	 * @param color		the Color of the Disks that we want to check the C squares for.
-	 * @return			the number of lone C squares that are occupied by a Disk of a certain Color.
+	 * @return			the number of 'C squares' that are occupied by a Disk of a certain Color.
 	 */
 	public int cSquaresOwned(Color color){
 		int cSquares = 0;
 		
-		if ((diskColor(new Point(0, 1)) == color) && (diskColor(new Point(0, 0)) != color))
+		if (diskColor(new Point(0, 1)) == color)
 			cSquares++;
-		if ((diskColor(new Point(1, 0)) == color) && (diskColor(new Point(0, 0)) != color))
-			cSquares++;
-		
-		if ((diskColor(new Point(0, rows - 2)) == color) && (diskColor(new Point(0, rows - 1)) != color))
-			cSquares++;
-		if ((diskColor(new Point(1, rows - 1)) == color) && (diskColor(new Point(0, rows - 1)) != color))
+		if (diskColor(new Point(1, 0)) == color)
 			cSquares++;
 		
-		if ((diskColor(new Point(columns - 2, 0)) == color) && (diskColor(new Point(columns - 1, 0)) != color))
+		if (diskColor(new Point(0, rows - 2)) == color)
 			cSquares++;
-		if ((diskColor(new Point(columns - 1, 1)) == color) && (diskColor(new Point(columns - 1, 0)) != color))
+		if (diskColor(new Point(1, rows - 1)) == color)
 			cSquares++;
 		
-		if ((diskColor(new Point(columns - 1, rows - 2)) == color) && (diskColor(new Point(columns - 1, rows - 1)) != color))
+		if (diskColor(new Point(columns - 2, 0)) == color)
 			cSquares++;
-		if ((diskColor(new Point(columns - 2, rows - 1)) == color) && (diskColor(new Point(columns - 1, rows - 1)) != color))
+		if (diskColor(new Point(columns - 1, 1)) == color)
+			cSquares++;
+		
+		if (diskColor(new Point(columns - 1, rows - 2)) == color)
+			cSquares++;
+		if (diskColor(new Point(columns - 2, rows - 1)) == color)
+			cSquares++;
+		
+		return cSquares;
+	}
+	
+	/**
+	 * Calculates the number of 'C squares' are occupied by a Disk of a certain Color, \n
+	 * which are not next to an occupied corner
+	 * @param color		the Color of the Disks that we want to check the C squares for.
+	 * @return			the number of lone 'C squares' that are occupied by a Disk of a certain Color.
+	 */
+	public int badCSquaresOwned(Color color){
+		int cSquares = 0;
+		
+		if ((diskColor(new Point(0, 1)) == color) && (diskColor(new Point(0, 0)) == Color.NONE))
+			cSquares++;
+		if ((diskColor(new Point(1, 0)) == color) && (diskColor(new Point(0, 0)) == Color.NONE))
+			cSquares++;
+		
+		if ((diskColor(new Point(0, rows - 2)) == color) && (diskColor(new Point(0, rows - 1)) == Color.NONE))
+			cSquares++;
+		if ((diskColor(new Point(1, rows - 1)) == color) && (diskColor(new Point(0, rows - 1)) == Color.NONE))
+			cSquares++;
+		
+		if ((diskColor(new Point(columns - 2, 0)) == color) && (diskColor(new Point(columns - 1, 0)) == Color.NONE))
+			cSquares++;
+		if ((diskColor(new Point(columns - 1, 1)) == color) && (diskColor(new Point(columns - 1, 0)) == Color.NONE))
+			cSquares++;
+		
+		if ((diskColor(new Point(columns - 1, rows - 2)) == color) && (diskColor(new Point(columns - 1, rows - 1)) == Color.NONE))
+			cSquares++;
+		if ((diskColor(new Point(columns - 2, rows - 1)) == color) && (diskColor(new Point(columns - 1, rows - 1)) == Color.NONE))
 			cSquares++;
 		
 		return cSquares;

@@ -15,10 +15,9 @@ import piece_properties.Color;
  */
 public class AlphaBetaStrategy extends Strategy{
 
-	public int depth = 8;			///< The depth to search the game tree
-	boolean fullSearch = false;		///< When true, entire game tree is searched.
+	public int depth = 7;			///< The depth to search the game tree. Values 1 to 8 are practical.
 	
-	public int nodesExpanded = 0;
+	public int nodesExpanded = 0;	///< Number of nodes expanded during search.
 	
 	/**
 	 * Constructor - Calls subclasses constructor
@@ -34,16 +33,14 @@ public class AlphaBetaStrategy extends Strategy{
 	 * @return			The updated Board after the "move" is performed.
 	 */
 	public Board move(Board board){
-		if (board.turn >= 48){
+		if (board.turn >= 48)
 			depth = 60;
-			fullSearch = true;
-		}
 		
 		int alpha = Integer.MIN_VALUE;
 		int beta = Integer.MAX_VALUE;
 		
 		long startTime = System.currentTimeMillis();
-		Board successorBoard = alphaBeta(board, 0, depth, alpha, beta, fullSearch);
+		Board successorBoard = alphaBeta(board, 0, depth, alpha, beta);
 		long endTime = System.currentTimeMillis();
 		
 		double elapsedTime = (endTime - startTime) / 1000.0;
@@ -58,7 +55,7 @@ public class AlphaBetaStrategy extends Strategy{
 		
 		/* Display utility to console */
 		Utility utility = new Utility(successorBoard);
-		utility.utilityComplex();
+		utility.utilityFinal();
 		System.out.println("utility complex = " + utility.value + "\n");
 		
 		return board;
@@ -73,7 +70,7 @@ public class AlphaBetaStrategy extends Strategy{
 	 * @param beta			"lowest utility choice found so far for the min player" - CS 440 lecture slides
 	 * @return				The Board after the "move" is performed.
 	 */
-	public Board alphaBeta(Board board, int currLevel, int maxDepth, int alpha, int beta, boolean fullSearch){
+	public Board alphaBeta(Board board, int currLevel, int maxDepth, int alpha, int beta){
 		if (board.gameEnded || (currLevel == maxDepth))
 			return board;
 		Utility utility;
@@ -83,21 +80,15 @@ public class AlphaBetaStrategy extends Strategy{
 		
 		if (board.playerTurn == Color.BLACK){
 			/* Sort Boards corresponding to stronger moves first */
-			if (fullSearch)
-				Collections.sort(successorBoards, Collections.reverseOrder(new ScoreComparatorWhite()));
-			else
-				Collections.sort(successorBoards, Collections.reverseOrder(new BoardComparatorWhite()));
+			Collections.sort(successorBoards, Collections.reverseOrder(new BoardComparatorWhite()));
 			
 			int max = Integer.MIN_VALUE;
 			for (int i = 0; i < successorBoards.size(); i++){
 				nodesExpanded++;
 				Board successor = successorBoards.get(i);
-				Board lookaheadBoard = alphaBeta(successor, currLevel + 1, maxDepth, alpha, beta, fullSearch);
+				Board lookaheadBoard = alphaBeta(successor, currLevel + 1, maxDepth, alpha, beta);
 				utility = new Utility(lookaheadBoard);
-				if (fullSearch)
-					utility.utilityScoreDiff();
-				else
-					utility.utilityComplex();
+				utility.utilityFinal();
 				if (utility.value > max){
 					max = utility.value;
 					bestBoard = successor;
@@ -110,21 +101,15 @@ public class AlphaBetaStrategy extends Strategy{
 		}
 		else{
 			/* Sort Boards corresponding to stronger moves first */
-			if (fullSearch)
-				Collections.sort(successorBoards, new ScoreComparatorWhite());
-			else
-				Collections.sort(successorBoards, new BoardComparatorWhite());
+			Collections.sort(successorBoards, new BoardComparatorWhite());
 			
 			int min = Integer.MAX_VALUE;
 			for (int i = 0; i < successorBoards.size(); i++){
 				nodesExpanded++;
 				Board successor = successorBoards.get(i);
-				Board lookaheadBoard = alphaBeta(successor, currLevel + 1, maxDepth, alpha, beta, fullSearch);
+				Board lookaheadBoard = alphaBeta(successor, currLevel + 1, maxDepth, alpha, beta);
 				utility = new Utility(lookaheadBoard);
-				if (fullSearch)
-					utility.utilityScoreDiff();
-				else
-					utility.utilityComplex();
+				utility.utilityFinal();
 				if (utility.value < min){
 					min = utility.value;
 					bestBoard = successor;

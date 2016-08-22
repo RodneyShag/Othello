@@ -1,4 +1,3 @@
-/** \brief The strategies for our Othello Program */
 package strategies;
 
 /** 

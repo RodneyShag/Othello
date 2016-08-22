@@ -60,7 +60,7 @@ public class AlphaBetaStrategyTest {
 		AlphaBetaStrategy alphaBetaStrategy = new AlphaBetaStrategy(controller);
 		
 		/* Test data */
-		Board board = alphaBetaStrategy.alphaBeta(controller.board, 3, 3, 0, 0, false);
+		Board board = alphaBetaStrategy.alphaBeta(controller.board, 3, 3, 0, 0);
 		assertEquals(board.blackPlayer.score, 2);
 		assertEquals(board.whitePlayer.score, 2);
 	}
