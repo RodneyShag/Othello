@@ -33,7 +33,7 @@ public class Utility {
 	}
 	
 	/**
-	 * Calculates utility based on valid moves remaining for each player. More moves equals greater utility
+	 * Calculates utility based on valid moves remaining for each player. More moves equals greater utility.
 	 */
 	public void utilityValidMoves(){
 		if (board.gameEnded)
@@ -42,42 +42,64 @@ public class Utility {
 			value = board.blackPlayer.validMoves.size() - board.whitePlayer.validMoves.size();
 	}
 	
+	
 	/**
-	 * Calculates utility based on valid moves remaining for each player. More moves equals greater utility \n
-	 * Also takes into account X squares, C squares, and corners.
+	 * Calculates utility based on X squares, C squares, and corners.
 	 */
 	public void utilityStatic(){
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
-			int utilityBlack = board.blackPlayer.validMoves.size()
-					           - 10 * board.badCSquaresOwned(Color.BLACK) 
-				               - 20 * board.badXSquaresOwned(Color.BLACK)
-				               + 50 * board.cornersOwned(Color.BLACK);
-			int utilityWhite = board.whitePlayer.validMoves.size()
-					           - 10 * board.badCSquaresOwned(Color.WHITE) 
-					           - 20 * board.badXSquaresOwned(Color.WHITE)
-					           + 50 * board.cornersOwned(Color.WHITE);
+			int utilityBlack =   50  * board.cornersOwned(Color.BLACK) 
+							 + (-20) * board.xSquaresOwned(Color.BLACK)
+					         + (-10) * board.cSquaresOwned(Color.BLACK);
+					         
+			int utilityWhite =   50  * board.cornersOwned(Color.WHITE)
+							 + (-20) * board.xSquaresOwned(Color.WHITE)
+					         + (-10) * board.cSquaresOwned(Color.WHITE);
 			value = utilityBlack - utilityWhite;
 		}
 	}
 	
 	/**
-	 * Calculates utility based on valid moves remaining for each player. More moves equals greater utility \n
-	 * Also takes into account X squares, C squares, and corners.
+	 * Calculates utility using turn-based partitioning. Takes into account both number and types of squares owned.
 	 */
 	public void utilityDynamic(){
+		int utilityBlack = 0;
+		int utilityWhite = 0;
+		if (board.gameEnded)
+			gameEndedUtility();
+		else if (board.turn >= 42){
+			utilityBlack = board.blackPlayer.score;
+			utilityWhite = board.whitePlayer.score;
+		}
+		else{
+			utilityBlack = ( 70 - board.turn) * board.cornersOwned(Color.BLACK) 
+						 + (-50 + board.turn) * board.xSquaresOwned(Color.BLACK)
+						 + (-45 + board.turn) * board.cSquaresOwned(Color.BLACK);
+			utilityWhite = ( 70 - board.turn) * board.cornersOwned(Color.WHITE) 
+						 + (-50 + board.turn) * board.xSquaresOwned(Color.WHITE)
+						 + (-45 + board.turn) * board.cSquaresOwned(Color.WHITE);
+		}
+		value = utilityBlack - utilityWhite;
+	}
+	
+	/**
+	 * Calculates utility based on valid moves remaining for each player. More moves equals greater utility. \n
+	 * Also takes into account X squares, C squares, and corners.
+	 */
+	public void utilityFinal(){
 		if (board.gameEnded)
 			gameEndedUtility();
 		else{
 			int utilityBlack = board.blackPlayer.validMoves.size()
-					           + (-65 + board.turn) * board.badCSquaresOwned(Color.BLACK) 
+					           + (-63 + board.turn) * board.badCSquaresOwned(Color.BLACK) 
 					           + (-60 + board.turn) * board.badXSquaresOwned(Color.BLACK)
-				               + ( 70 - board.turn) * board.cornersOwned(Color.BLACK);
+				               + ( 66 - board.turn) * board.cornersOwned(Color.BLACK);
 			int utilityWhite = board.whitePlayer.validMoves.size()
-			           			+ (-65 + board.turn) * board.badCSquaresOwned(Color.WHITE) 
+			           			+ (-63 + board.turn) * board.badCSquaresOwned(Color.WHITE) 
 			           			+ (-60 + board.turn) * board.badXSquaresOwned(Color.WHITE)
-			           			+ ( 70 - board.turn) * board.cornersOwned(Color.WHITE);
+			           			+ ( 66 - board.turn) * board.cornersOwned(Color.WHITE);
 			if (board.turn >= 44){
 				utilityBlack += board.blackPlayer.score;
 				utilityWhite += board.whitePlayer.score;

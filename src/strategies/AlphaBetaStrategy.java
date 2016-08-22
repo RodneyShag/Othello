@@ -15,7 +15,6 @@ import main_components.Command;
 public class AlphaBetaStrategy extends Strategy{
 
 	public int depth;			///< The depth to search the game tree. Anything above 8 is too slow.
-	boolean fullSearch;			///< When true, entire game tree is searched.
 	boolean turnBasedUtility;	///< When true, utility is a function of time
 	
 	/**
@@ -24,7 +23,6 @@ public class AlphaBetaStrategy extends Strategy{
 	 */
 	public AlphaBetaStrategy(int depth, boolean turnBasedUtility){
 		super();
-		fullSearch 			  = false;
 		this.depth 			  = depth;
 		this.turnBasedUtility = turnBasedUtility;
 	}
@@ -35,15 +33,13 @@ public class AlphaBetaStrategy extends Strategy{
 	 * @return			The updated Board after the "move" is performed.
 	 */
 	public Board move(Board board){
-		if (board.turn >= 50){ // originally 48
-			depth = 60;
-			fullSearch = true;
-		}
+		if (board.turn >= 50) // 48 can work too, but slower
+			depth = 60;		  // to search rest of tree
 		
 		int alpha = Integer.MIN_VALUE;
 		int beta = Integer.MAX_VALUE;
 		
-		Board successorBoard = alphaBeta(board, 0, depth, alpha, beta, fullSearch);
+		Board successorBoard = alphaBeta(board, 0, depth, alpha, beta);
 		
 		/* Execute the command */
 		Command command = getCommand(board, successorBoard);
@@ -61,7 +57,7 @@ public class AlphaBetaStrategy extends Strategy{
 	 * @param beta			"lowest utility choice found so far for the min player" - CS 440 lecture slides
 	 * @return				The Board after the "move" is performed.
 	 */
-	public Board alphaBeta(Board board, int currLevel, int maxDepth, int alpha, int beta, boolean fullSearch){
+	public Board alphaBeta(Board board, int currLevel, int maxDepth, int alpha, int beta){
 		if (board.gameEnded || (currLevel == maxDepth))
 			return board;
 		Utility utility;
@@ -79,12 +75,10 @@ public class AlphaBetaStrategy extends Strategy{
 			int max = Integer.MIN_VALUE;
 			for (int i = 0; i < successorBoards.size(); i++){
 				Board successor = successorBoards.get(i);
-				Board lookaheadBoard = alphaBeta(successor, currLevel + 1, maxDepth, alpha, beta, fullSearch);
+				Board lookaheadBoard = alphaBeta(successor, currLevel + 1, maxDepth, alpha, beta);
 				utility = new Utility(lookaheadBoard);
-				if (fullSearch)
-					utility.utilityScoreDiff();
-				else if (turnBasedUtility)
-					utility.utilityDynamic();
+				if (turnBasedUtility)
+					utility.utilityFinal();
 				else
 					utility.utilityStatic();
 				if (utility.value > max){
@@ -107,12 +101,10 @@ public class AlphaBetaStrategy extends Strategy{
 			int min = Integer.MAX_VALUE;
 			for (int i = 0; i < successorBoards.size(); i++){
 				Board successor = successorBoards.get(i);
-				Board lookaheadBoard = alphaBeta(successor, currLevel + 1, maxDepth, alpha, beta, fullSearch);
+				Board lookaheadBoard = alphaBeta(successor, currLevel + 1, maxDepth, alpha, beta);
 				utility = new Utility(lookaheadBoard);
-				if (fullSearch)
-					utility.utilityScoreDiff();
-				else if (turnBasedUtility)
-					utility.utilityDynamic();
+				if (turnBasedUtility)
+					utility.utilityFinal();
 				else
 					utility.utilityStatic();
 				if (utility.value < min){
@@ -128,4 +120,3 @@ public class AlphaBetaStrategy extends Strategy{
 		return bestBoard;
 	}
 }
-

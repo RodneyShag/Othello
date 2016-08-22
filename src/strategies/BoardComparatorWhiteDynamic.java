@@ -5,6 +5,7 @@ import java.util.Comparator;
 import main_components.Board;
 
 /**
+ * \brief
  * Used in sorting an array of boards so that the moves that immediately give WHITE the largest utility advantage come first
  * @author Rodney Shaghoulian
  */
