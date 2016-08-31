@@ -341,7 +341,7 @@ public class Board {
 	}
 	
 	/**
-	 * Calculates the number of bad spots are occupied by a Disk of a certain Color. \n
+	 * Calculates the number of 'X squares' are occupied by a Disk of a certain Color. \n
 	 * which are not next to a corner owned by that color.
 	 * @param color		the Color of the Disks that we want to check the corners for.
 	 * @return			the number of 'X squares' that are occupied by a Disk of a certain Color.
@@ -410,7 +410,7 @@ public class Board {
 	}
 	
 	/**
-	 * Calculates the number of 'C squares' are occupied by a Disk of a certain Color, \n
+	 * Calculates the number of bad 'C squares' are occupied by a Disk of a certain Color, \n
 	 * which are not next to an occupied corner
 	 * @param color		the Color of the Disks that we want to check the C squares for.
 	 * @return			the number of lone 'C squares' that are occupied by a Disk of a certain Color.
