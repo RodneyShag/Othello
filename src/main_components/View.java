@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.Point;
 import java.awt.event.MouseListener;
 
-import piece_properties.Color;
-
 /**
  * \brief
  * The "View" for MVC (Model - View - Controller)
@@ -65,7 +63,7 @@ public class View {
 		green = new java.awt.Color(0, 100, 0);
 		lightGreen = new java.awt.Color(0, 200, 0);
 
-		frame = new JFrame("Othello");
+		frame = new JFrame("Othello - tbPony");
 		blackIcon = new ImageIcon("images/black_disk.png");
 		whiteIcon = new ImageIcon("images/white_disk.png");
 		

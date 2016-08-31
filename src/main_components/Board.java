@@ -3,8 +3,6 @@ package main_components;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import piece_properties.Color;
-
 /**
  * \brief
  * This is where the 2-player game of Othello will be played.
@@ -412,7 +410,7 @@ public class Board {
 	}
 	
 	/**
-	 * Calculates the number of 'C squares' are occupied by a Disk of a certain Color, \n
+	 * Calculates the number of bad 'C squares' are occupied by a Disk of a certain Color, \n
 	 * which are not next to an occupied corner
 	 * @param color		the Color of the Disks that we want to check the C squares for.
 	 * @return			the number of lone 'C squares' that are occupied by a Disk of a certain Color.

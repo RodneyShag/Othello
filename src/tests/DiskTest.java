@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import main_components.Color;
 import main_components.Disk;
-import piece_properties.Color;
 
 /**
  * \brief

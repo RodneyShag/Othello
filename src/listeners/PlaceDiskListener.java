@@ -7,12 +7,12 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;
 
 import main_components.Button;
+import main_components.Color;
 import main_components.Board;
 import main_components.Command;
 import main_components.CommandManager;
 import main_components.Controller;
 import main_components.View;
-import piece_properties.Color;
 
 /**
  * \brief

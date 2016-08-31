@@ -7,8 +7,8 @@ import java.awt.Point;
 import org.junit.Test;
 
 import main_components.Board;
+import main_components.Color;
 import main_components.Controller;
-import piece_properties.Color;
 import strategies.Difficulty;
 import strategies.RandomStrategy;
 

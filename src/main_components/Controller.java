@@ -5,7 +5,6 @@ import listeners.NewGameListener;
 import listeners.PlaceDiskListener;
 import listeners.RedoListener;
 import listeners.UndoListener;
-import piece_properties.Color;
 import strategies.MinimaxStrategy;
 import strategies.AlphaBetaStrategy;
 import strategies.Difficulty;

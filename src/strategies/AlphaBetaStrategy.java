@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import main_components.Board;
+import main_components.Color;
 import main_components.Command;
 import main_components.Controller;
-import piece_properties.Color;
 
 /**
  * \brief

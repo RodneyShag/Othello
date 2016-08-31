@@ -4,10 +4,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import main_components.Board;
+import main_components.Color;
 import main_components.CommandManager;
 import main_components.Controller;
 import main_components.View;
-import piece_properties.Color;
 
 /**
  * \brief

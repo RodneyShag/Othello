@@ -1,7 +1,7 @@
 package strategies;
 
 import main_components.Board;
-import piece_properties.Color;
+import main_components.Color;
 
 /**
  * \brief

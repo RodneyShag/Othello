@@ -1,5 +1,4 @@
-/** \brief Each Disk has a  Color */
-package piece_properties;
+package main_components;
 
 /** 
  * \brief

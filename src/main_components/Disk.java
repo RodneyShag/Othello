@@ -1,7 +1,5 @@
 package main_components;
 
-import piece_properties.Color;
-
 /**
  * \brief
  * A representation of the standard Disk, which is BLACK or WHITE

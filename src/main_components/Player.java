@@ -3,8 +3,6 @@ package main_components;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import piece_properties.Color;
-
 /**
  * \brief
  * A representation of a Player. May be Human or Computer.
