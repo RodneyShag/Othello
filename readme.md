@@ -6,7 +6,7 @@ A 1-player board game coded in Java. GUI coded using Swing.
 
 [Learn to play in 1-2 minutes](https://www.youtube.com/watch?v=Ol3Id7xYsY4)
 
-This app was created to aid a research project at [University of Illinois at Urbana-Champaign](https://cs.illinois.edu/)
+This app was created to aid a [research project](https://github.com/rshaghoulian/Othello/blob/master/research_project.pdf) at [University of Illinois at Urbana-Champaign](https://cs.illinois.edu/)
 
 ## Designing An Intelligent Othello System Using Turn-based Partitioning
 
