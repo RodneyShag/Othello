@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>My Project: Class Hierarchy</title>
+<title>Othello: Class Hierarchy</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Othello
    </div>
   </td>
  </tr>
@@ -116,7 +116,7 @@ $(document).ready(function(){initNavTree('hierarchy.html','');});
 <tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classmain__components_1_1_board.html" target="_self">main_components.Board</a></td><td class="desc">This is where the 2-player game of Othello will be played </td></tr>
 <tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classtests_1_1_board_test.html" target="_self">tests.BoardTest</a></td><td class="desc">Tests the Board class thoroughly </td></tr>
 <tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classtests_1_1_button_test.html" target="_self">tests.ButtonTest</a></td><td class="desc">Tests the custom Button class </td></tr>
-<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enumpiece__properties_1_1_color.html" target="_self">piece_properties.Color</a></td><td class="desc">Disks are either WHITE or BLACK. NONE is for an empty tile </td></tr>
+<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enummain__components_1_1_color.html" target="_self">main_components.Color</a></td><td class="desc">Disks are either WHITE or BLACK. NONE is for an empty tile </td></tr>
 <tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classmain__components_1_1_command.html" target="_self">main_components.Command</a></td><td class="desc">A representation of a move on a <a class="el" href="classmain__components_1_1_board.html" title="This is where the 2-player game of Othello will be played. ">Board</a> </td></tr>
 <tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classmain__components_1_1_command_manager.html" target="_self">main_components.CommandManager</a></td><td class="desc">Keeps Commands in Stacks so that we can "redo" and "undo" moves </td></tr>
 <tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classtests_1_1_command_manager_test.html" target="_self">tests.CommandManagerTest</a></td><td class="desc">Tests the CommandManager for execute, undo, redo commands </td></tr>
@@ -139,8 +139,8 @@ $(document).ready(function(){initNavTree('hierarchy.html','');});
 <tr id="row_22_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classtests_1_1_utility_test.html" target="_self">tests.UtilityTest</a></td><td class="desc">Tests the Utility class </td></tr>
 <tr id="row_23_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classmain__components_1_1_view.html" target="_self">main_components.View</a></td><td class="desc">The "View" for MVC (Model - <a class="el" href="classmain__components_1_1_view.html" title="The &quot;View&quot; for MVC (Model - View - Controller) ">View</a> - <a class="el" href="classmain__components_1_1_controller.html" title="The Controller in the MVC structure. ">Controller</a>) </td></tr>
 <tr id="row_24_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_24_" class="arrow" onclick="toggleFolder('24_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>Comparator</b></td><td class="desc"></td></tr>
-<tr id="row_24_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classstrategies_1_1_board_comparator_white.html" target="_self">strategies.BoardComparatorWhite</a></td><td class="desc"></td></tr>
-<tr id="row_24_1_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classstrategies_1_1_score_comparator_white.html" target="_self">strategies.ScoreComparatorWhite</a></td><td class="desc"></td></tr>
+<tr id="row_24_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classstrategies_1_1_board_comparator_white.html" target="_self">strategies.BoardComparatorWhite</a></td><td class="desc">Used in sorting an array of boards so that the moves that immediately give WHITE the largest utility advantage come first </td></tr>
+<tr id="row_24_1_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classstrategies_1_1_score_comparator_white.html" target="_self">strategies.ScoreComparatorWhite</a></td><td class="desc">Used in sorting an array of boards so that the moves that immediately give WHITE the largest point gain come first </td></tr>
 <tr id="row_25_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_25_" class="arrow" onclick="toggleFolder('25_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>JButton</b></td><td class="desc"></td></tr>
 <tr id="row_25_0_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classmain__components_1_1_button.html" target="_self">main_components.Button</a></td><td class="desc">An extension of JButton. <a class="el" href="classmain__components_1_1_button.html" title="An extension of JButton. Button knows its Position on the GUI. ">Button</a> knows its Position on the GUI </td></tr>
 <tr id="row_26_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_26_" class="arrow" onclick="toggleFolder('26_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>MouseAdapter</b></td><td class="desc"></td></tr>

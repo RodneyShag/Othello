@@ -1,6 +1,6 @@
 var NAVTREE =
 [
-  [ "My Project", "index.html", [
+  [ "Othello", "index.html", [
     [ "Packages", null, [
       [ "Packages", "namespaces.html", "namespaces" ]
     ] ],
@@ -23,7 +23,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_all_tests_8java.html",
-"classtests_1_1_board_test.html#a0ad8f7db874f45b4715fac405d7ea95a"
+"classtests_1_1_board_test.html#a19f789f6c26cb5f48538f8170ad391b2"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

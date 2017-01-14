@@ -13,11 +13,8 @@ var searchData=
   ['updatevalidmoves',['updateValidMoves',['../classmain__components_1_1_player.html#aa083f0ec9e7fcab10587f5aa1b863973',1,'main_components::Player']]],
   ['updateview',['updateView',['../classmain__components_1_1_view.html#aaed851779ed5e2e92a2a6c26168aba9f',1,'main_components::View']]],
   ['utility',['Utility',['../classstrategies_1_1_utility.html#a95a49588055f0d3643c27f51d556c8c5',1,'strategies::Utility']]],
-  ['utilitycomplex',['utilityComplex',['../classstrategies_1_1_utility.html#a92f056fa243557be38247988ae75bb1d',1,'strategies::Utility']]],
   ['utilitycorners',['utilityCorners',['../classstrategies_1_1_utility.html#a8cf875865d8ceee2048edffe140ba73a',1,'strategies::Utility']]],
+  ['utilityfinal',['utilityFinal',['../classstrategies_1_1_utility.html#ab46b69922fafa879bdd417eeec69bc0c',1,'strategies::Utility']]],
   ['utilityscorediff',['utilityScoreDiff',['../classstrategies_1_1_utility.html#aa63d22e353ae819fb0684ec5e87a67f5',1,'strategies::Utility']]],
-  ['utilityvalidmoves',['utilityValidMoves',['../classstrategies_1_1_utility.html#afbe97d5db8d95096e718b4976109ad9a',1,'strategies::Utility']]],
-  ['utilityvalidmovesandcorners',['utilityValidMovesAndCorners',['../classstrategies_1_1_utility.html#a50c15f05a5c0ef68b7f0f41a4ff5d060',1,'strategies::Utility']]],
-  ['utilityvalidmovesandcsquares',['utilityValidMovesAndCSquares',['../classstrategies_1_1_utility.html#a2e79fac14df80f8bbfd075b2b9317a5e',1,'strategies::Utility']]],
-  ['utilityvalidmovesandxsquares',['utilityValidMovesAndXSquares',['../classstrategies_1_1_utility.html#aa8bf94620756be71b177895b5ca408b1',1,'strategies::Utility']]]
+  ['utilityvalidmoves',['utilityValidMoves',['../classstrategies_1_1_utility.html#afbe97d5db8d95096e718b4976109ad9a',1,'strategies::Utility']]]
 ];

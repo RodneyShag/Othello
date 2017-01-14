@@ -6,6 +6,9 @@ var dir_1bdf4233a5a02faacdfef80d3e4ad7ac =
     [ "Button.java", "_button_8java.html", [
       [ "Button", "classmain__components_1_1_button.html", "classmain__components_1_1_button" ]
     ] ],
+    [ "Color.java", "_color_8java.html", [
+      [ "Color", "enummain__components_1_1_color.html", "enummain__components_1_1_color" ]
+    ] ],
     [ "Command.java", "_command_8java.html", [
       [ "Command", "classmain__components_1_1_command.html", "classmain__components_1_1_command" ]
     ] ],

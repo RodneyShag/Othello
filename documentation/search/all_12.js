@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['white',['WHITE',['../enumpiece__properties_1_1_color.html#af963ec4d82ed66cd6c59d7c73a80b4b1',1,'piece_properties::Color']]],
+  ['white',['WHITE',['../enummain__components_1_1_color.html#a03483bd95380f97c05a30434ab8f0f23',1,'main_components::Color']]],
   ['whiteforfeit',['whiteForfeit',['../classmain__components_1_1_view.html#acdd0262d83e1a38bfb250dc4eadf2d92',1,'main_components::View']]],
   ['whitegameswon',['whiteGamesWon',['../classmain__components_1_1_controller.html#a382157970a249edd2b4a710e30a2544f',1,'main_components::Controller']]],
   ['whiteicon',['whiteIcon',['../classmain__components_1_1_view.html#a28736c474eee670d125311111af1d659',1,'main_components::View']]],

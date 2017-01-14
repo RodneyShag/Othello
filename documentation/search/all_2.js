@@ -4,7 +4,7 @@ var searchData=
   ['changecolor',['changeColor',['../classmain__components_1_1_disk.html#a29d5ddace24323a384a67e5642964ecb',1,'main_components::Disk']]],
   ['chooserandommove',['chooseRandomMove',['../classstrategies_1_1_random_strategy.html#afa9e3e6f8e69c03d0f5fb3974ab822b6',1,'strategies::RandomStrategy']]],
   ['color',['color',['../classmain__components_1_1_command.html#a3c390f599f64eb97dbae6b984664e93b',1,'main_components.Command.color()'],['../classmain__components_1_1_disk.html#a4f167b6d192a35c39ecb67842fad9d82',1,'main_components.Disk.color()'],['../classmain__components_1_1_player.html#ac53f0560f2de4b5bf0311afb8d295693',1,'main_components.Player.color()']]],
-  ['color',['Color',['../enumpiece__properties_1_1_color.html',1,'piece_properties']]],
+  ['color',['Color',['../enummain__components_1_1_color.html',1,'main_components']]],
   ['color_2ejava',['Color.java',['../_color_8java.html',1,'']]],
   ['columns',['columns',['../classmain__components_1_1_board.html#a75395e7ed86db4467ae1b14040800c42',1,'main_components.Board.columns()'],['../classmain__components_1_1_controller.html#a19602dc7b83f0f7f1122f84465b5239f',1,'main_components.Controller.columns()']]],
   ['command',['Command',['../classmain__components_1_1_command.html',1,'main_components']]],

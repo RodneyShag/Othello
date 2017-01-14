@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['color',['Color',['../enumpiece__properties_1_1_color.html',1,'piece_properties']]],
+  ['color',['Color',['../enummain__components_1_1_color.html',1,'main_components']]],
   ['command',['Command',['../classmain__components_1_1_command.html',1,'main_components']]],
   ['commandmanager',['CommandManager',['../classmain__components_1_1_command_manager.html',1,'main_components']]],
   ['commandmanagertest',['CommandManagerTest',['../classtests_1_1_command_manager_test.html',1,'tests']]],

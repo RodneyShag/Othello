@@ -2,6 +2,8 @@ var classmain__components_1_1_board =
 [
     [ "Board", "classmain__components_1_1_board.html#a986be11c42c1cbd74daaf0da34bbc6fc", null ],
     [ "Board", "classmain__components_1_1_board.html#abb31bb88ab118e7f0af766ddbac73a63", null ],
+    [ "badCSquaresOwned", "classmain__components_1_1_board.html#a8c6d2b25fc4e9dff19f2fb382d845289", null ],
+    [ "badXSquaresOwned", "classmain__components_1_1_board.html#a4c282a1d0f3a352b26a0cfad367081cc", null ],
     [ "cornersOwned", "classmain__components_1_1_board.html#abf25062b3d531516a6dbc48b2a5a1d85", null ],
     [ "cSquaresOwned", "classmain__components_1_1_board.html#a46576e923360f74d0457f84872a20ead", null ],
     [ "diskColor", "classmain__components_1_1_board.html#ac4125706a7c791c0f76d863350cc8a53", null ],

@@ -5,7 +5,7 @@ var hierarchy =
     [ "main_components.Board", "classmain__components_1_1_board.html", null ],
     [ "tests.BoardTest", "classtests_1_1_board_test.html", null ],
     [ "tests.ButtonTest", "classtests_1_1_button_test.html", null ],
-    [ "piece_properties.Color", "enumpiece__properties_1_1_color.html", null ],
+    [ "main_components.Color", "enummain__components_1_1_color.html", null ],
     [ "main_components.Command", "classmain__components_1_1_command.html", null ],
     [ "main_components.CommandManager", "classmain__components_1_1_command_manager.html", null ],
     [ "tests.CommandManagerTest", "classtests_1_1_command_manager_test.html", null ],

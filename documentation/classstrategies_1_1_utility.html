@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>My Project: strategies.Utility Class Reference</title>
+<title>Othello: strategies.Utility Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Othello
    </div>
   </td>
  </tr>
@@ -127,14 +127,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8cf875865d8ceee2048edffe140ba73a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbe97d5db8d95096e718b4976109ad9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstrategies_1_1_utility.html#afbe97d5db8d95096e718b4976109ad9a">utilityValidMoves</a> ()</td></tr>
 <tr class="separator:afbe97d5db8d95096e718b4976109ad9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50c15f05a5c0ef68b7f0f41a4ff5d060"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstrategies_1_1_utility.html#a50c15f05a5c0ef68b7f0f41a4ff5d060">utilityValidMovesAndCorners</a> ()</td></tr>
-<tr class="separator:a50c15f05a5c0ef68b7f0f41a4ff5d060"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e79fac14df80f8bbfd075b2b9317a5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstrategies_1_1_utility.html#a2e79fac14df80f8bbfd075b2b9317a5e">utilityValidMovesAndCSquares</a> ()</td></tr>
-<tr class="separator:a2e79fac14df80f8bbfd075b2b9317a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8bf94620756be71b177895b5ca408b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstrategies_1_1_utility.html#aa8bf94620756be71b177895b5ca408b1">utilityValidMovesAndXSquares</a> ()</td></tr>
-<tr class="separator:aa8bf94620756be71b177895b5ca408b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92f056fa243557be38247988ae75bb1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstrategies_1_1_utility.html#a92f056fa243557be38247988ae75bb1d">utilityComplex</a> ()</td></tr>
-<tr class="separator:a92f056fa243557be38247988ae75bb1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab46b69922fafa879bdd417eeec69bc0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstrategies_1_1_utility.html#ab46b69922fafa879bdd417eeec69bc0c">utilityFinal</a> ()</td></tr>
+<tr class="separator:ab46b69922fafa879bdd417eeec69bc0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1378358aaf4cd2c64d66558e56d482e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstrategies_1_1_utility.html#a1378358aaf4cd2c64d66558e56d482e3">gameEndedUtility</a> ()</td></tr>
 <tr class="separator:a1378358aaf4cd2c64d66558e56d482e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -190,23 +184,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a92f056fa243557be38247988ae75bb1d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void strategies.Utility.utilityComplex </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Calculates utility based on valid moves remaining for each player. More moves equals greater utility <br />
-Also takes into account X squares, C squares, and corners. </p>
-
-</div>
-</div>
 <a class="anchor" id="a8cf875865d8ceee2048edffe140ba73a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -220,6 +197,23 @@ Also takes into account X squares, C squares, and corners. </p>
       </table>
 </div><div class="memdoc">
 <p>Calculates utility based on the number of corners owned by each Player. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab46b69922fafa879bdd417eeec69bc0c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void strategies.Utility.utilityFinal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculates utility based on valid moves remaining for each player. More moves equals greater utility. <br />
+Also takes into account X squares, C squares, and corners. </p>
 
 </div>
 </div>
@@ -252,57 +246,6 @@ Also takes into account X squares, C squares, and corners. </p>
       </table>
 </div><div class="memdoc">
 <p>Calculates utility based on valid moves remaining for each player. More moves equals greater utility </p>
-
-</div>
-</div>
-<a class="anchor" id="a50c15f05a5c0ef68b7f0f41a4ff5d060"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void strategies.Utility.utilityValidMovesAndCorners </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Calculates utility based on valid moves remaining for each player. More moves equals greater utility <br />
-Also takes into account number of corners owned. </p>
-
-</div>
-</div>
-<a class="anchor" id="a2e79fac14df80f8bbfd075b2b9317a5e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void strategies.Utility.utilityValidMovesAndCSquares </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Calculates utility based on valid moves remaining for each player. More moves equals greater utility <br />
-Also takes into account number of 'C squares' owned. </p>
-
-</div>
-</div>
-<a class="anchor" id="aa8bf94620756be71b177895b5ca408b1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void strategies.Utility.utilityValidMovesAndXSquares </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Calculates utility based on valid moves remaining for each player. More moves equals greater utility <br />
-Also takes into account X squares. </p>
 
 </div>
 </div>
